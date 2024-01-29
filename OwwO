@@ -49,6 +49,22 @@ class MainProjuct : AppCompatActivity() {
     	var imges = arrayOf(R.drawable.image1)
 	var detail = arrayOf("")
 	lateinit var list:ListView
+
+override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main_akkaradamri)
+
+        list = findViewById(R.id.list)
+        var adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,names)
+        list.adapter = adapter
+        list.setOnItemClickListener { parent, view, position, id ->
+            var page = Intent(this@MainAkkaradamri,MainDetailprojuct::class.java)
+            page.putExtra("name",names[position])
+            page.putExtra("detail",detial[position])
+            page.putExtra("image",images[position])
+            startActivity(page)
+
+        }
 ----------------------------------
 class MainDetailprojuct : AppCompatActivity() {
     
@@ -198,3 +214,19 @@ box1
     <corners android:radius="10dp"/>
     <stroke android:color="#ffffff" android:width="5dp"/>
 </shape>
+------------------------------------------
+<com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="217dp"
+        android:layout_height="149dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.24"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/docter" />
+---
